@@ -61,4 +61,25 @@ public class InteractionScanner : MonoBehaviour {
 			priorityInteractable.GetComponent<InteractiveObject>().Interaction();
 		}
 	}
+
+	public void RemoveObject(GameObject other) {
+		if (other.GetComponent<InteractiveObject>() != null) {
+			//Remove the object, and rescan for priority.
+			interactableInRange.Remove(other);
+
+			//Set object priority lowest.
+			priorityInteractable = null;
+			objectPriority = -1;
+
+			foreach (GameObject thing in interactableInRange) {
+
+				int newPriority = thing.GetComponent<InteractiveObject>().priorityNumber;
+
+				if (newPriority >= objectPriority) {
+					objectPriority = newPriority;
+					priorityInteractable = thing;
+				}
+			}
+		}
+	}
 }

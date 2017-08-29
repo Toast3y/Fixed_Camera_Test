@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractiveObject_Sample : InteractiveObject {
+public class InteractiveObject_Door : InteractiveObject {
 
+	void OnDrawGizmos() {
 
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -17,8 +19,6 @@ public class InteractiveObject_Sample : InteractiveObject {
 	}
 
 	public override void Interaction() {
-		Debug.Log("Interaction Successful!");
-		InteractionRemoval();
-		Destroy(this.gameObject);
+		Debug.Log("Door open!");
 	}
 }

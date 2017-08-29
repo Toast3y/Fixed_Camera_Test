@@ -16,5 +16,14 @@ public abstract class InteractiveObject : MonoBehaviour {
 
 	}
 
+	//Invoke this if the object in question needs to be removed from the interactive object list.
+	public void InteractionRemoval() {
+		var hitbox = GameObject.Find("Interaction Hitbox");
+
+		if (hitbox != null) {
+			hitbox.GetComponent<InteractionScanner>().RemoveObject(gameObject);
+		}
+	}
+
 	public abstract void Interaction();
 }

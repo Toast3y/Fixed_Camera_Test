@@ -17,4 +17,20 @@ public class CameraController : MonoBehaviour {
 	void Update () {
 		
 	}
+
+	private void OnTriggerEnter(Collider other) {
+		if (other.name == "Player") {
+			mainCamera.GetComponent<Camera>().enabled = true;
+		}
+	}
+
+	private void OnTriggerStay(Collider other) {
+		
+	}
+
+	private void OnTriggerExit(Collider other) {
+		if (other.name == "Player") {
+			mainCamera.GetComponent<Camera>().enabled = false;
+		}
+	}
 }
