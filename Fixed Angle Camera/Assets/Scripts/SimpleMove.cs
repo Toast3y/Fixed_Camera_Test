@@ -5,6 +5,7 @@ using UnityEngine;
 public class SimpleMove : MonoBehaviour {
 
 	public GameObject reticle;
+	public GameObject weapon;
 	public GameObject interactiveHitbox;
 
 	public Material reddot;
@@ -39,6 +40,7 @@ public class SimpleMove : MonoBehaviour {
 			//Generic controls
 			if (Input.GetButtonDown("Interact")) {
 				Debug.Log("Fire Weapon");
+				weapon.GetComponent<WeaponHandler>().FireWeapon();
 			}
 
 			if (Input.GetButton("Run")) {
@@ -182,11 +184,13 @@ public class SimpleMove : MonoBehaviour {
 
 	//Stance Controls
 	private void LookUp() {
-		reticle.transform.localPosition = new Vector3(0, 0.75f, 0.75f);
+		reticle.transform.localPosition = new Vector3(0, 0.5f, 0.75f);
+		//reticle.transform.rotation = new Quaternion(-30.0f, gameObject.transform.rotation.y, gameObject.transform.rotation.z, gameObject.transform.rotation.w);
 	}
 
 	private void LookDown() {
-		reticle.transform.localPosition = new Vector3(0, -0.75f, 0.75f);
+		reticle.transform.localPosition = new Vector3(0, -0.5f, 0.75f);
+		//reticle.transform.rotation = new Quaternion(30.0f, 0, 0, 0);
 	}
 
 	private void ResetReticle() {
