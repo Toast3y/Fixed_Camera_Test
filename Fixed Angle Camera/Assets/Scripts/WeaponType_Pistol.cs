@@ -8,6 +8,15 @@ public class WeaponType_Pistol : WeaponType {
 
 	// Use this for initialization
 	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+
+	public WeaponType_Pistol() {
 		weaponName = "Pistol";
 
 		weaponDamage = 12;
@@ -27,25 +36,27 @@ public class WeaponType_Pistol : WeaponType {
 		weaponSize = 1;
 		weaponWeight = 1f;
 
-		layermask = 1 << 9;
+		layermask = (1 << 9) | (1 << 10);
+		Debug.Log("Weapon created!");
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-	
 
 	public override void FireWeapon(GameObject muzzle) {
 		//Raycast using the specified parameters
 		RaycastHit hit;
 		if (Physics.Raycast(muzzle.transform.position, muzzle.transform.forward, out hit, weaponRange, layermask)) {
-			Debug.DrawRay(muzzle.transform.position, muzzle.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+			Debug.DrawRay(muzzle.transform.position, muzzle.transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
 			Debug.Log("Hit!");
+
+			if (hit.collider.gameObject.layer == 9) {
+				Debug.Log("Enemy Hit!");
+				hit.collider.gameObject.GetComponent<EnemyType>().TakeDamage();
+			}
+			else if (hit.collider.gameObject.layer == 10) {
+				Debug.Log("Scenery Hit!");
+			}
 		}
 		else {
-			Debug.DrawRay(muzzle.transform.position, muzzle.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+			Debug.DrawRay(muzzle.transform.position, muzzle.transform.TransformDirection(Vector3.forward) * weaponRange, Color.red);
 			Debug.Log("No hit!");
 		}
 	}
