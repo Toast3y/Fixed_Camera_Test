@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SimpleMove : MonoBehaviour {
 
+	public GameObject gameManager;
 	public GameObject reticle;
 	public GameObject weapon;
 	public GameObject interactiveHitbox;
@@ -18,6 +19,9 @@ public class SimpleMove : MonoBehaviour {
 	public float runMultiplier;
 
 	public bool reticle_colour = false;
+	public bool paused = false;
+	public bool menuOpen = false;
+	public bool inventoryOpen = false;
 
 	// Use this for initialization
 	void Start () {
@@ -29,111 +33,32 @@ public class SimpleMove : MonoBehaviour {
 		//Debug.Log("recompile");
 		//Poll the games controls and do the appropriate action
 
-		//Fighting stance controls
-		if (Input.GetButton("Stance")) {
-
-			if (reticle_colour == false) {
-				ChangeMaterialColour();
-				reticle_colour = true;
+		if (!paused) {
+			if (Input.GetButton("Stance")) {
+				//Controls for use while in fighting stance.
+				StanceControls();
 			}
-
-			//Generic controls
-			if (Input.GetButtonDown("Interact")) {
-				Debug.Log("Fire Weapon");
-				weapon.GetComponent<WeaponHandler>().FireWeapon();
+			else {
+				//Standard non-stance movement controls.
+				RegularControls();
 			}
-
-			if (Input.GetButton("Run")) {
-
-			}
-
-			if (Input.GetButtonDown("Cancel")) {
-
-			}
-
-			if (Input.GetButtonDown("Inventory")) {
-
-			}
-
-			//Movement controls
-			if (Input.GetAxis("DPadXAxis") > 0) {
-				TurnRight();
-			}
-
-			if (Input.GetAxis("DPadXAxis") < 0) {
-				TurnLeft();
-			}
-
-			if (Input.GetAxis("DPadYAxis") > 0) {
-				LookUp();
-			}
-
-			if (Input.GetAxis("DPadYAxis") < 0) {
-				LookDown();
-			}
-
-			//Misc Controls
-			if (Input.GetButtonDown("Pause")) {
-
-			}
-
-			if (Input.GetButtonDown("Options")) {
-
-			}
-
 		}
 		else {
-
-			if (reticle_colour == true) {
-				ResetMaterialColour();
-				reticle_colour = false;
-			}
-
-			//Generic controls
-			if (Input.GetButtonDown("Interact")) {
-				interactiveHitbox.GetComponent<InteractionScanner>().InteractWIthObject();
-			}
-
-			if (Input.GetButton("Run")) {
+			if (paused && menuOpen) {
+				//Options menu
 
 			}
-
-			if (Input.GetButtonDown("Cancel")) {
-
-			}
-
-			if (Input.GetButtonDown("Inventory")) {
+			else if (paused && inventoryOpen) {
+				//Inventory menu
 
 			}
-
-			//Movement controls
-			if (Input.GetAxis("DPadXAxis") > 0) {
-				TurnRight();
+			else {
+				//Pause Screen
+				PauseControls();
 			}
-
-			if (Input.GetAxis("DPadXAxis") < 0) {
-				TurnLeft();
-			}
-
-			if (Input.GetAxis("DPadYAxis") > 0) {
-				MoveForward();
-			}
-
-			if (Input.GetAxis("DPadYAxis") < 0) {
-				MoveBackward();
-			}
-
-			//Misc Controls
-			if (Input.GetButtonDown("Pause")) {
-
-			}
-
-			if (Input.GetButtonDown("Options")) {
-
-			}
-
-			
 		}
+
+		
 
 		if (Input.GetAxisRaw("DPadYAxis") <= 0.1 && Input.GetAxisRaw("DPadYAxis") >= -0.1 || Input.GetButtonUp("Stance")) {
 			ResetReticle();
@@ -143,7 +68,243 @@ public class SimpleMove : MonoBehaviour {
 	}
 
 	//Generic Controls
-	
+	private void RegularControls() {
+		if (reticle_colour == true) {
+			ResetMaterialColour();
+			reticle_colour = false;
+		}
+
+		//Generic controls
+		if (Input.GetButtonDown("Interact")) {
+			interactiveHitbox.GetComponent<InteractionScanner>().InteractWIthObject();
+		}
+
+		if (Input.GetButton("Run")) {
+
+		}
+
+		if (Input.GetButtonDown("Cancel")) {
+
+		}
+
+		if (Input.GetButtonDown("Inventory")) {
+
+		}
+
+		//Movement controls
+		if (Input.GetAxis("DPadXAxis") > 0) {
+			TurnRight();
+		}
+
+		if (Input.GetAxis("DPadXAxis") < 0) {
+			TurnLeft();
+		}
+
+		if (Input.GetAxis("DPadYAxis") > 0) {
+			MoveForward();
+		}
+
+		if (Input.GetAxis("DPadYAxis") < 0) {
+			MoveBackward();
+		}
+
+		//Misc Controls
+		if (Input.GetButtonDown("Pause")) {
+			PauseGame();
+		}
+
+		if (Input.GetButtonDown("Options")) {
+
+		}
+	}
+
+
+	//Stance Controls
+	private void StanceControls() {
+		if (reticle_colour == false) {
+			ChangeMaterialColour();
+			reticle_colour = true;
+		}
+
+		//Generic controls
+		if (Input.GetButtonDown("Interact")) {
+			Debug.Log("Fire Weapon");
+			weapon.GetComponent<WeaponHandler>().FireWeapon();
+		}
+
+		if (Input.GetButton("Run")) {
+			//Reload weapon
+		}
+
+		if (Input.GetButtonDown("Cancel")) {
+			//Use secondary weapon
+		}
+
+		if (Input.GetButtonDown("Inventory")) {
+
+		}
+
+		//Movement controls
+		if (Input.GetAxis("DPadXAxis") > 0) {
+			TurnRight();
+		}
+
+		if (Input.GetAxis("DPadXAxis") < 0) {
+			TurnLeft();
+		}
+
+		if (Input.GetAxis("DPadYAxis") > 0) {
+			LookUp();
+		}
+
+		if (Input.GetAxis("DPadYAxis") < 0) {
+			LookDown();
+		}
+
+		//Misc Controls
+		if (Input.GetButtonDown("Pause")) {
+
+		}
+
+		if (Input.GetButtonDown("Options")) {
+
+		}
+	}
+
+	private void PauseControls() {
+		//Generic controls
+		if (Input.GetButtonDown("Interact")) {
+			
+		}
+
+		if (Input.GetButton("Run")) {
+
+		}
+
+		if (Input.GetButtonDown("Cancel")) {
+
+		}
+
+		if (Input.GetButtonDown("Inventory")) {
+
+		}
+
+		//Movement controls
+		if (Input.GetAxis("DPadXAxis") > 0) {
+			
+		}
+
+		if (Input.GetAxis("DPadXAxis") < 0) {
+			
+		}
+
+		if (Input.GetAxis("DPadYAxis") > 0) {
+			
+		}
+
+		if (Input.GetAxis("DPadYAxis") < 0) {
+			
+		}
+
+		//Misc Controls
+		if (Input.GetButtonDown("Pause")) {
+			UnpauseGame();
+		}
+
+		if (Input.GetButtonDown("Options")) {
+
+		}
+	}
+
+	private void InventoryControls() {
+		//Generic controls
+		if (Input.GetButtonDown("Interact")) {
+			
+		}
+
+		if (Input.GetButton("Run")) {
+
+		}
+
+		if (Input.GetButtonDown("Cancel")) {
+
+		}
+
+		if (Input.GetButtonDown("Inventory")) {
+
+		}
+
+		//Movement controls
+		if (Input.GetAxis("DPadXAxis") > 0) {
+			
+		}
+
+		if (Input.GetAxis("DPadXAxis") < 0) {
+			
+		}
+
+		if (Input.GetAxis("DPadYAxis") > 0) {
+			
+		}
+
+		if (Input.GetAxis("DPadYAxis") < 0) {
+			
+		}
+
+		//Misc Controls
+		if (Input.GetButtonDown("Pause")) {
+
+		}
+
+		if (Input.GetButtonDown("Options")) {
+
+		}
+	}
+
+	private void MenuControls() {
+		//Generic controls
+		if (Input.GetButtonDown("Interact")) {
+			
+		}
+
+		if (Input.GetButton("Run")) {
+
+		}
+
+		if (Input.GetButtonDown("Cancel")) {
+
+		}
+
+		if (Input.GetButtonDown("Inventory")) {
+
+		}
+
+		//Movement controls
+		if (Input.GetAxis("DPadXAxis") > 0) {
+			
+		}
+
+		if (Input.GetAxis("DPadXAxis") < 0) {
+			
+		}
+
+		if (Input.GetAxis("DPadYAxis") > 0) {
+			
+		}
+
+		if (Input.GetAxis("DPadYAxis") < 0) {
+			
+		}
+
+		//Misc Controls
+		if (Input.GetButtonDown("Pause")) {
+
+		}
+
+		if (Input.GetButtonDown("Options")) {
+
+		}
+	}
 
 
 
@@ -180,9 +341,6 @@ public class SimpleMove : MonoBehaviour {
 	//"Alternate" controls using joystick movement relative to active camera position.
 	//TODO: Figure this out.
 
-
-
-	//Stance Controls
 	private void LookUp() {
 		reticle.transform.localPosition = new Vector3(0, 0.5f, 0.75f);
 		//reticle.transform.rotation = new Quaternion(-30.0f, gameObject.transform.rotation.y, gameObject.transform.rotation.z, gameObject.transform.rotation.w);
@@ -204,5 +362,18 @@ public class SimpleMove : MonoBehaviour {
 	private void ResetMaterialColour() {
 		reticle.GetComponent<Renderer>().material = standard_colour;
 		
+	}
+
+	//System control methods
+	private void PauseGame() {
+		paused = true;
+		gameManager.GetComponent<GameManager>().PauseGame();
+		Debug.Log("Game paused");
+	}
+
+	private void UnpauseGame() {
+		paused = false;
+		gameManager.GetComponent<GameManager>().UnpauseGame();
+		Debug.Log("Game unpaused");
 	}
 }
