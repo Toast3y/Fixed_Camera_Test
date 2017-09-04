@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
 	public List<GameObject> pauseList;
+	public GameObject player;
 	public GameObject fade;
 	public bool paused;
 
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
+
+	//Pause game functions
 	public void PauseGame() {
 		//Suspend all threads (not possible, consider "pause loop" within them?)
 		//Lock controls bar select input
@@ -27,7 +30,7 @@ public class GameManager : MonoBehaviour {
 		//Set timescale to zero so deltaTime-dependent operations don't impact the objects and all animations freeze
 		Time.timeScale = 0;
 
-		fade.active = true;
+		fade.SetActive(true);
 
 		paused = true;
 
@@ -45,8 +48,30 @@ public class GameManager : MonoBehaviour {
 
 		paused = false;
 
-		fade.active = false;
+		fade.SetActive(false);
 
 		Time.timeScale = 1;
+	}
+
+
+	//Inventory functions
+	public void OpenInventory() {
+
+	}
+
+	public void CloseInvetory() {
+
+	}
+
+
+	//Control locking functions
+	public void LockControls() {
+		//Prevent most or all player input during animations or cutscenes.
+		player.GetComponent<SimpleMove>().animationIsPlaying = true;
+	}
+
+	public void UnlockControls() {
+		//Unlock all controls, like above, but in reverse.
+		player.GetComponent<SimpleMove>().animationIsPlaying = false;
 	}
 }

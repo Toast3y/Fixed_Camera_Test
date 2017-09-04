@@ -4,7 +4,9 @@ using UnityEngine;
 
 public abstract class InteractiveObject : MonoBehaviour {
 
+	public GameObject gameManager;
 	public int priorityNumber;
+	public bool isInteractive = true;
 
 	// Use this for initialization
 	void Start() {
@@ -23,6 +25,10 @@ public abstract class InteractiveObject : MonoBehaviour {
 		if (hitbox != null) {
 			hitbox.GetComponent<InteractionScanner>().RemoveObject(gameObject);
 		}
+	}
+
+	public void SetIsInteractive(bool _isInteractive) {
+		isInteractive = _isInteractive;
 	}
 
 	public abstract void Interaction();

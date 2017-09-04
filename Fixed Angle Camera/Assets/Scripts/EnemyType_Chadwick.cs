@@ -6,7 +6,7 @@ public class EnemyType_Chadwick : EnemyType {
 
 	// Use this for initialization
 	void Start () {
-		health = 10;
+		
 	}
 	
 	// Update is called once per frame

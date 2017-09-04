@@ -22,6 +22,7 @@ public class SimpleMove : MonoBehaviour {
 	public bool paused = false;
 	public bool menuOpen = false;
 	public bool inventoryOpen = false;
+	public bool animationIsPlaying = false;
 
 	// Use this for initialization
 	void Start () {
@@ -34,13 +35,16 @@ public class SimpleMove : MonoBehaviour {
 		//Poll the games controls and do the appropriate action
 
 		if (!paused) {
-			if (Input.GetButton("Stance")) {
+			if ((Input.GetButton("Stance")) && (!animationIsPlaying)) {
 				//Controls for use while in fighting stance.
 				StanceControls();
 			}
-			else {
+			else if (!animationIsPlaying) {
 				//Standard non-stance movement controls.
 				RegularControls();
+			}
+			else {
+				//Animation/movie controls
 			}
 		}
 		else {
@@ -76,7 +80,7 @@ public class SimpleMove : MonoBehaviour {
 
 		//Generic controls
 		if (Input.GetButtonDown("Interact")) {
-			interactiveHitbox.GetComponent<InteractionScanner>().InteractWIthObject();
+			Interact();
 		}
 
 		if (Input.GetButton("Run")) {
@@ -88,7 +92,7 @@ public class SimpleMove : MonoBehaviour {
 		}
 
 		if (Input.GetButtonDown("Inventory")) {
-
+			OpenInventory();
 		}
 
 		//Movement controls
@@ -364,6 +368,11 @@ public class SimpleMove : MonoBehaviour {
 		
 	}
 
+	//Player interaction methods
+	private void Interact() {
+		interactiveHitbox.GetComponent<InteractionScanner>().InteractWIthObject();
+	}
+
 	//System control methods
 	private void PauseGame() {
 		paused = true;
@@ -375,5 +384,14 @@ public class SimpleMove : MonoBehaviour {
 		paused = false;
 		gameManager.GetComponent<GameManager>().UnpauseGame();
 		Debug.Log("Game unpaused");
+	}
+
+	//Inventory control methods
+	private void OpenInventory() {
+
+	}
+
+	private void CloseInventory() {
+
 	}
 }

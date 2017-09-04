@@ -4,5 +4,6 @@ using UnityEngine;
 
 public abstract class InventoryItem{
 
-	
+	public string itemName;
+
 }
