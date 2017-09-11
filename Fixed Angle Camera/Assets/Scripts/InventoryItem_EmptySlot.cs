@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryManager : MonoBehaviour {
+public class InventoryItem_EmptySlot : InventoryItem {
+
+	public GameObject cursor;
+
+	public InventoryItem item;
 
 	// Use this for initialization
 	void Start () {
@@ -12,5 +16,9 @@ public class InventoryManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	public void SetCursorStatus(bool state) {
+		cursor.SetActive(state);
 	}
 }

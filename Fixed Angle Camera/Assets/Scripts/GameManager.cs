@@ -7,7 +7,9 @@ public class GameManager : MonoBehaviour {
 	public List<GameObject> pauseList;
 	public GameObject player;
 	public GameObject fade;
+	public GameObject inventoryManager;
 	public bool paused;
+	public bool inventoryOpen;
 
 	// Use this for initialization
 	void Start () {
@@ -56,11 +58,14 @@ public class GameManager : MonoBehaviour {
 
 	//Inventory functions
 	public void OpenInventory() {
-
+		inventoryOpen = true;
+		inventoryManager.GetComponent<InventoryManager>().InitializeInventory();
+		inventoryManager.SetActive(true);
 	}
 
 	public void CloseInvetory() {
-
+		inventoryOpen = false;
+		inventoryManager.SetActive(false);
 	}
 
 

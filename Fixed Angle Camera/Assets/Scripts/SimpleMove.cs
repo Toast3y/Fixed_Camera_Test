@@ -54,7 +54,7 @@ public class SimpleMove : MonoBehaviour {
 			}
 			else if (paused && inventoryOpen) {
 				//Inventory menu
-
+				InventoryControls();
 			}
 			else {
 				//Pause Screen
@@ -221,47 +221,31 @@ public class SimpleMove : MonoBehaviour {
 	}
 
 	private void InventoryControls() {
-		//Generic controls
-		if (Input.GetButtonDown("Interact")) {
-			
-		}
-
-		if (Input.GetButton("Run")) {
-
-		}
-
-		if (Input.GetButtonDown("Cancel")) {
-
-		}
-
-		if (Input.GetButtonDown("Inventory")) {
-
-		}
+		//Use the inventory manager
+		gameManager.GetComponent<GameManager>().inventoryManager.GetComponent<InventoryManager>().InventoryControls();
 
 		//Movement controls
+		//Shift all input from the inventory manager here for concurrency
+		/*
 		if (Input.GetAxis("DPadXAxis") > 0) {
-			
+
 		}
 
 		if (Input.GetAxis("DPadXAxis") < 0) {
-			
+
 		}
 
 		if (Input.GetAxis("DPadYAxis") > 0) {
-			
+
 		}
 
 		if (Input.GetAxis("DPadYAxis") < 0) {
-			
-		}
-
-		//Misc Controls
-		if (Input.GetButtonDown("Pause")) {
 
 		}
+		*/
 
-		if (Input.GetButtonDown("Options")) {
-
+		if (Input.GetButtonDown("Cancel")) {
+			CloseInventory();
 		}
 	}
 
@@ -388,10 +372,16 @@ public class SimpleMove : MonoBehaviour {
 
 	//Inventory control methods
 	private void OpenInventory() {
-
+		paused = true;
+		inventoryOpen = true;
+		gameManager.GetComponent<GameManager>().OpenInventory();
+		Debug.Log("Inventory Open");
 	}
 
 	private void CloseInventory() {
-
+		paused = false;
+		inventoryOpen = false;
+		gameManager.GetComponent<GameManager>().CloseInvetory();
+		Debug.Log("Inventory Closed");
 	}
 }
