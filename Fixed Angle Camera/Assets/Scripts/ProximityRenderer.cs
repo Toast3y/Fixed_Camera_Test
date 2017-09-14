@@ -7,10 +7,14 @@ public class ProximityRenderer : MonoBehaviour {
 	[Header("Basic Options")]
 	public Color cubeColour;
 	public Camera associatedCamera;
+	public GameObject room;
 
 	[Header("Object Tracking")]
 	public bool track;
 	public GameObject itemToTrack;
+
+	[Header("Transition Handling")]
+	public bool isTransition;
 
 
 	void OnDrawGizmos() {
@@ -35,11 +39,13 @@ public class ProximityRenderer : MonoBehaviour {
 
 		if (other.name == "Player") {
 			associatedCamera.GetComponent<Camera>().enabled = true;
+			room.GetComponent<CameraController>().ToggleCamera(false);
 		}
 	}
 
 	private void OnTriggerExit(Collider other) {
 		if (other.name == "Player") {
+			room.GetComponent<CameraController>().ToggleCamera(true);
 			associatedCamera.GetComponent<Camera>().enabled = false;
 		}
 	}

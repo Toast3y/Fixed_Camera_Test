@@ -606,7 +606,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4660ba74ed538c5489cb31b1c2c653d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
   cursor: {fileID: 508607834}
   item: {fileID: 0}
 --- !u!1 &416904282
@@ -771,6 +770,7 @@ Transform:
   m_Children:
   - {fileID: 416904283}
   - {fileID: 153088832}
+  - {fileID: 2006723390}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1137,7 +1137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4660ba74ed538c5489cb31b1c2c653d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
   cursor: {fileID: 226922419}
   item: {fileID: 0}
 --- !u!1 &552104996
@@ -1170,8 +1169,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubeColour: {r: 0.703, g: 0, b: 0, a: 0.39215687}
   associatedCamera: {fileID: 1824391010}
+  room: {fileID: 1468967865}
   track: 0
   itemToTrack: {fileID: 0}
+  isTransition: 0
 --- !u!65 &552104998
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1407,7 +1408,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4660ba74ed538c5489cb31b1c2c653d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
   cursor: {fileID: 2115030056}
   item: {fileID: 0}
 --- !u!1 &687788125
@@ -1779,8 +1779,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubeColour: {r: 0, g: 0, b: 0, a: 0}
   associatedCamera: {fileID: 0}
+  room: {fileID: 0}
   track: 1
   itemToTrack: {fileID: 1422319024}
+  isTransition: 0
 --- !u!92 &879607620
 Behaviour:
   m_ObjectHideFlags: 0
@@ -2044,7 +2046,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4660ba74ed538c5489cb31b1c2c653d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
   cursor: {fileID: 535538984}
   item: {fileID: 0}
 --- !u!1 &932071183
@@ -2077,8 +2078,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubeColour: {r: 0.084, g: 0.622, b: 0.553, a: 0.497}
   associatedCamera: {fileID: 336086212}
+  room: {fileID: 1468967865}
   track: 0
   itemToTrack: {fileID: 0}
+  isTransition: 1
 --- !u!65 &932071185
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2099,7 +2102,7 @@ Transform:
   m_GameObject: {fileID: 932071183}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.01, y: 0, z: -3}
-  m_LocalScale: {x: 2, y: 1, z: 3}
+  m_LocalScale: {x: 2.25, y: 1, z: 3}
   m_Children:
   - {fileID: 336086213}
   m_Father: {fileID: 1509353313}
@@ -2722,7 +2725,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4660ba74ed538c5489cb31b1c2c653d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
   cursor: {fileID: 1882806615}
   item: {fileID: 0}
 --- !u!1 &1382308310
@@ -2806,7 +2808,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4660ba74ed538c5489cb31b1c2c653d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
   cursor: {fileID: 623029050}
   item: {fileID: 0}
 --- !u!1 &1396424908
@@ -3148,6 +3149,7 @@ MonoBehaviour:
   - {fileID: 835375267}
   - {fileID: 1824391010}
   - {fileID: 336086212}
+  isToggleable: 1
 --- !u!65 &1468967867
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3310,7 +3312,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4746865471960982, guid: 963d5f216d9f34740beb001da084010c, type: 2}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 4746865471960982, guid: 963d5f216d9f34740beb001da084010c, type: 2}
       propertyPath: m_LocalScale.z
@@ -3378,6 +3380,21 @@ Prefab:
         type: 2}
       propertyPath: m_CullingMask.m_Bits
       value: 4292902911
+      objectReference: {fileID: 0}
+    - target: {fileID: 114862780491286438, guid: 963d5f216d9f34740beb001da084010c,
+        type: 2}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 879607616}
+    - target: {fileID: 114862780491286438, guid: 963d5f216d9f34740beb001da084010c,
+        type: 2}
+      propertyPath: room
+      value: 
+      objectReference: {fileID: 1944962104}
+    - target: {fileID: 114862780491286438, guid: 963d5f216d9f34740beb001da084010c,
+        type: 2}
+      propertyPath: isTransition
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 963d5f216d9f34740beb001da084010c, type: 2}
@@ -3468,7 +3485,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4660ba74ed538c5489cb31b1c2c653d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
   cursor: {fileID: 1183485608}
   item: {fileID: 0}
 --- !u!1 &1683802890
@@ -3636,8 +3652,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubeColour: {r: 0, g: 0, b: 0, a: 0}
   associatedCamera: {fileID: 0}
+  room: {fileID: 0}
   track: 1
   itemToTrack: {fileID: 1422319024}
+  isTransition: 0
 --- !u!1 &1691908220
 GameObject:
   m_ObjectHideFlags: 0
@@ -3682,8 +3700,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubeColour: {r: 0.553, g: 0.703, b: 0.784, a: 0.384}
   associatedCamera: {fileID: 835375267}
+  room: {fileID: 1468967865}
   track: 0
   itemToTrack: {fileID: 0}
+  isTransition: 0
 --- !u!65 &1691908223
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3777,7 +3797,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4660ba74ed538c5489cb31b1c2c653d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
   cursor: {fileID: 1048800221}
   item: {fileID: 0}
 --- !u!1 &1813501624
@@ -4146,6 +4165,7 @@ MonoBehaviour:
   mainCamera: {fileID: 879607617}
   sceneCameras:
   - {fileID: 339035335}
+  isToggleable: 1
 --- !u!65 &1944962106
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4172,6 +4192,62 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2006723389
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2006723390}
+  - component: {fileID: 2006723392}
+  - component: {fileID: 2006723391}
+  m_Layer: 0
+  m_Name: Transition Zone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2006723390
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2006723389}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 2}
+  m_Children: []
+  m_Father: {fileID: 485615376}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2006723391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2006723389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1d0e33d47c06564c8932d1ab456bda1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room1: {fileID: 1468967865}
+  room2: {fileID: 1944962104}
+  cubeColour: {r: 0.5411765, g: 0.46666667, b: 0, a: 0.6392157}
+--- !u!65 &2006723392
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2006723389}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 0.5, z: 0.7}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2045318523
 GameObject:
   m_ObjectHideFlags: 0
@@ -4391,20 +4467,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0

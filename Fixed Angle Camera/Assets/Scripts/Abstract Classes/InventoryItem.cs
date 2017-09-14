@@ -6,4 +6,14 @@ public abstract class InventoryItem : MonoBehaviour{
 
 	public string itemName;
 
+	public string GetItemName () {
+		return itemName;
+	}
+
+	public abstract void OnUse();
+
+	public abstract void OnInspect();
+
+	public abstract void OnCombine();
+
 }

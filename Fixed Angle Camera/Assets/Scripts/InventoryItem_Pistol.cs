@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryItem_EmptySlot : MonoBehaviour {
-
-	public GameObject cursor;
-
-	public InventoryItem item;
+public class InventoryItem_Pistol : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -17,9 +13,4 @@ public class InventoryItem_EmptySlot : MonoBehaviour {
 	void Update () {
 		
 	}
-
-	public void SetCursorStatus(bool state) {
-		cursor.SetActive(state);
-	}
-
 }

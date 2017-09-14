@@ -8,9 +8,11 @@ public class CameraController : MonoBehaviour {
 
 	public List<Camera> sceneCameras;
 
+	public bool isToggleable;
+
 	// Use this for initialization
 	void Start () {
-		
+		isToggleable = true;
 	}
 	
 	// Update is called once per frame
@@ -19,7 +21,7 @@ public class CameraController : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter(Collider other) {
-		if (other.name == "Player") {
+		if (other.name == "Player" && isToggleable) {
 			mainCamera.GetComponent<Camera>().enabled = true;
 		}
 	}
@@ -29,8 +31,19 @@ public class CameraController : MonoBehaviour {
 	}
 
 	private void OnTriggerExit(Collider other) {
-		if (other.name == "Player") {
+		if (other.name == "Player" && isToggleable) {
 			mainCamera.GetComponent<Camera>().enabled = false;
+		}
+	}
+
+	public void SetIsToggleable(bool _isToggleable) {
+		isToggleable = _isToggleable;
+	}
+
+	public void ToggleCamera(bool _state) {
+		//Toggle the camera if it's allowed.
+		if (isToggleable) {
+			mainCamera.GetComponent<Camera>().enabled = _state;
 		}
 	}
 }
