@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryItem_Pistol : MonoBehaviour {
+public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

@@ -6,6 +6,7 @@ public class InventoryManager : MonoBehaviour {
 
 	public int invPointer;
 	public int invSize;
+	public int invSlotsOccupied;
 
 	public GameObject activeInvSlot;
 
@@ -149,6 +150,62 @@ public class InventoryManager : MonoBehaviour {
 		//Sort the inventory whenever an item is removed or a heavy item is added
 		
 	}
+
+	public void AddItemToInventory<T>() where T : InventoryItem, new() {
+		//Create an object of the default type and put it into the inventory.
+		var newItem = new T();
+
+		//Find an open slot in the inventory
+		switch (invSlotsOccupied) {
+			case 0:
+			//invSlot1
+			invSlot1.GetComponent<InventoryItem_EmptySlot>().SetItem(newItem);
+			break;
+			case 1:
+			//invSlot2
+			invSlot2.GetComponent<InventoryItem_EmptySlot>().SetItem(newItem);
+			break;
+			case 2:
+			//invSlot3
+			invSlot3.GetComponent<InventoryItem_EmptySlot>().SetItem(newItem);
+			break;
+			case 3:
+			//invSlot4
+			invSlot4.GetComponent<InventoryItem_EmptySlot>().SetItem(newItem);
+			break;
+			case 4:
+			//invSlot5
+			invSlot5.GetComponent<InventoryItem_EmptySlot>().SetItem(newItem);
+			break;
+			case 5:
+			//invSlot6
+			invSlot6.GetComponent<InventoryItem_EmptySlot>().SetItem(newItem);
+			break;
+			case 6:
+			//invSlot7
+			invSlot7.GetComponent<InventoryItem_EmptySlot>().SetItem(newItem);
+			break;
+			case 7:
+			//invSlot8
+			invSlot8.GetComponent<InventoryItem_EmptySlot>().SetItem(newItem);
+			break;
+			case 8:
+				//Inventory Full.
+			break;
+		}
+	}
+
+	public void AddItemToInventory<T>(InventoryItem existingItem) where T : InventoryItem, new() {
+		//Places an object with defined parameters into the inventory. Used for moving pre-existing items back in.
+
+		//var newItem = new T();
+	}
+
+	public void RemoveItemFromInventory(GameObject invSlot) {
+		//Remove an item from your inventory from a given slot.
+	}
+
+
 
 
 }

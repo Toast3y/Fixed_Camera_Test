@@ -254,7 +254,6 @@ public class SimpleMove : MonoBehaviour {
 		if (Input.GetButtonDown("Interact")) {
 			
 		}
-
 		if (Input.GetButton("Run")) {
 
 		}
@@ -308,14 +307,16 @@ public class SimpleMove : MonoBehaviour {
 	}
 
 	private void MoveBackward() {
-		/*if (Input.GetButtonDown("Run")) {
+		if (Input.GetButtonDown("Run")) {
 			//Perform a quick turn
 			//gameObject.transform.Rotate(Vector3.up, -spinSpeed * Time.deltaTime);
+			//animationIsPlaying = true;
+			//StartCoroutine("QuickTurn");
 		}
 		else {
 			gameObject.transform.Translate(Vector3.forward * -moveSpeed_backward * Time.deltaTime);
-		}*/
-		gameObject.transform.Translate(Vector3.forward * -moveSpeed_backward * Time.deltaTime);
+		}
+		//gameObject.transform.Translate(Vector3.forward * -moveSpeed_backward * Time.deltaTime);
 	}
 
 	private void TurnLeft() {
@@ -326,8 +327,26 @@ public class SimpleMove : MonoBehaviour {
 		gameObject.transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime);
 	}
 
+	IEnumerator QuickTurn() {
+		//While turn isn't finished, keep turning.
+		Quaternion playerRotation = gameObject.transform.rotation;
+		Quaternion newRotation = new Quaternion(playerRotation.x, playerRotation.y - 180.0f, playerRotation.z, playerRotation.w);
+		bool finishedAnimation = false;
+
+		while (!finishedAnimation) {
+			gameObject.transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, newRotation, Time.time * turnSpeed);
+
+
+		}
+
+		animationIsPlaying = false;
+		yield return null;
+	}
+
 	//"Alternate" controls using joystick movement relative to active camera position.
 	//TODO: Figure this out.
+	//Set thresholds for joystick changes, focus on the main camera
+	//Turn character and move them in the direction relative to the camera position.
 
 	private void LookUp() {
 		reticle.transform.localPosition = new Vector3(0, 0.5f, 0.75f);

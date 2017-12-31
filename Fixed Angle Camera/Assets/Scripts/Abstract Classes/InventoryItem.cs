@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class InventoryItem : MonoBehaviour{
+public abstract class InventoryItem : MonoBehaviour {
 
 	public string itemName;
 
-	public string GetItemName () {
+	public Sprite itemSprite;
+
+	public string GetItemName() {
 		return itemName;
 	}
 
